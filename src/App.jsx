@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useParams, useNavigate } from 'react-router-dom';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import About from './pages/About';
@@ -14,28 +14,29 @@ import WhatsAppButton from './components/ui/WhatsAppButton';
 import { sampleProperties } from './data/sampleProperties';
 import { Helmet } from 'react-helmet';
 import { Home, Building } from 'lucide-react';
-import Services from './pages/Services'; // Import the Services page
+import Services from './pages/Services';
 
 function App() {
-  // Static banner image (choose the desired image)
-  const bannerImage = '/assets/banner1.png';  // You can change this to any image you want
+  const bannerImage = '/assets/banner1.png';
 
   const { filters, updateFilters, filteredProperties } = usePropertySearch(sampleProperties);
 
+  const navigate = useNavigate();  // Add useNavigate hook
+
   const handleViewDetails = (id) => {
-    window.location.href = `/properties/${id}`; // Navigates to property details page
+    // Use navigate instead of window.location.href
+    navigate(`/properties/${id}`);
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="space-y-8">
           <div
             className="text-center space-y-6 px-4 py-12 rounded-lg shadow-lg"
             style={{
-              backgroundImage: `url(${bannerImage})`,  // Static image instead of rotation
+              backgroundImage: `url(${bannerImage})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -107,11 +108,11 @@ function Head() {
 }
 
 function PropertyDetailsPage() {
-  const { id } = useParams();  // Access the property ID from the URL
+  const { id } = useParams();
   const property = sampleProperties.find((p) => p.id === id);
 
   const handleClose = () => {
-    window.history.back();  // Go back to the previous page
+    window.history.back();
   };
 
   if (!property) {
@@ -130,8 +131,8 @@ function AppWithRouting() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/properties" element={<Properties />} />
-        <Route path="/properties/:id" element={<PropertyDetailsPage />} />  {/* Dynamic property details page */}
-        <Route path="/services" element={<Services />} /> {/* Add Services page */}
+        <Route path="/properties/:id" element={<PropertyDetailsPage />} />
+        <Route path="/services" element={<Services />} />
       </Routes>
     </Router>
   );
