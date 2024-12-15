@@ -10,6 +10,11 @@ export const PropertyCard = ({ property, onViewDetails }) => {  // Accept onView
     setShowDetails(false);
   };
 
+  const handleViewDetails = () => {
+    setShowDetails(true);
+    onViewDetails(property.id);  // Trigger onViewDetails and pass the property id
+  };
+
   return (
     <>
       <div className="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:scale-[1.02]">
@@ -58,7 +63,7 @@ export const PropertyCard = ({ property, onViewDetails }) => {  // Accept onView
             <Button
               variant="primary"
               size="sm"
-              onClick={() => onViewDetails(property.id)} // Trigger onViewDetails
+              onClick={handleViewDetails} // Trigger handleViewDetails
             >
               View Details
             </Button>

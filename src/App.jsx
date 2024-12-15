@@ -14,7 +14,7 @@ import WhatsAppButton from './components/ui/WhatsAppButton';
 import { sampleProperties } from './data/sampleProperties';
 import { Helmet } from 'react-helmet';
 import { Home, Building } from 'lucide-react';
-import Services from './pages/Services'; // Import the new services page
+import Services from './pages/Services'; // Import the Services page
 
 function App() {
   // Static banner image (choose the desired image)
@@ -23,7 +23,7 @@ function App() {
   const { filters, updateFilters, filteredProperties } = usePropertySearch(sampleProperties);
 
   const handleViewDetails = (id) => {
-    window.location.href = `/properties/${id}`;
+    window.location.href = `/properties/${id}`; // Navigates to property details page
   };
 
   return (
@@ -107,11 +107,11 @@ function Head() {
 }
 
 function PropertyDetailsPage() {
-  const { id } = useParams();
+  const { id } = useParams();  // Access the property ID from the URL
   const property = sampleProperties.find((p) => p.id === id);
 
   const handleClose = () => {
-    window.history.back();
+    window.history.back();  // Go back to the previous page
   };
 
   if (!property) {
@@ -130,7 +130,7 @@ function AppWithRouting() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/properties" element={<Properties />} />
-        <Route path="/properties/:id" element={<PropertyDetailsPage />} />
+        <Route path="/properties/:id" element={<PropertyDetailsPage />} />  {/* Dynamic property details page */}
         <Route path="/services" element={<Services />} /> {/* Add Services page */}
       </Routes>
     </Router>
