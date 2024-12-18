@@ -1,14 +1,14 @@
 export const sampleProperties = [
   {
     id: '1',
-    title: 'Gem Groves',
+    title: 'Mantri Synergy',
     description: 'Luxurious 2-bedroom apartment with stunning city views and modern amenities.',
     price: 7000,
     location: 'Padur, OMR',
     bedrooms: 2,
     bathrooms: 2,
     area: 1000,
-    imageUrl: '/assets/gemgroves/elevation.avif', // Banner image (local)
+    imageUrl: '/assets/gemgroves/mantri.avif', // Banner image (local)
     images: [ // Array of additional images for the detailed view
       '/assets/gemgroves/property1.jpg', // Local image 1
       '/assets/gemgroves/property2.jpg', // Local image 1

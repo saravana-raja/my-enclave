@@ -1,9 +1,10 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 import { Header } from '../components/layout/Header';
 import { Footer } from '../components/layout/Footer';
 import { sampleProperties } from '../data/sampleProperties';
 import { PropertyGrid } from '../components/property/PropertyGrid';
 import PropertyDetails from './PropertyDetails'; // Import the PropertyDetails component
+import WhatsAppButton from '../components/ui/WhatsAppButton';
 
 const Properties = () => {
   const [selectedProperty, setSelectedProperty] = useState(null); // Track selected property
@@ -26,13 +27,18 @@ const Properties = () => {
 
         {/* Show modal if a property is selected */}
         {selectedProperty && (
-          <PropertyDetails 
-            property={selectedProperty} 
-            onClose={closeModal} 
+          <PropertyDetails
+            property={selectedProperty}
+            onClose={closeModal}
           />
         )}
       </div>
       <Footer />
+
+      {/* Floating WhatsApp Button */}
+      <div className="fixed bottom-4 right-4">
+        <WhatsAppButton />
+      </div>
     </div>
   );
 };

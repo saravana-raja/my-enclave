@@ -32,11 +32,11 @@ const Contact = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
                   <Mail className="h-5 w-5 text-[#72ac4f]" />
-                  <span>support@myenclave.com</span>
+                  <span>myenclave.india@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone className="h-5 w-5 text-[#72ac4f]" />
-                  <span>+91 9787518289</span>
+                  <span>+91 9566245875</span>
                 </div>
               </div>
             </div>

@@ -10,8 +10,8 @@ const About = () => {
       <Header />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
-          <Building2 className="h-16 w-16 text-[#72ac4f] mx-auto mb-4" />
-          <h1 className="text-4xl font-bold mb-4">About myEnclave</h1>
+          <img src="/assets/svgviewer.svg" alt="SVG Viewer" className="h-16 w-16 text-[#72ac4f] mx-auto mb-4" />
+          <h1 className="text-4xl font-bold mb-4">About MyEnclave</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Your trusted partner in premium serviced apartments and seamless property management.
           </p>
@@ -37,22 +37,22 @@ const About = () => {
         </div>
 
         <div className="mt-16 text-center">
-  <h2 className="text-3xl font-semibold mb-6 text-gray-800">Our Core Services</h2>
-  <ul className="text-lg text-gray-600 max-w-3xl mx-auto list-inside pl-6 space-y-4 text-left">
-    <li>
-      <strong className="font-medium text-gray-800">Serviced Apartments:</strong> Fully-furnished apartments offering a perfect blend of comfort and convenience for short or long stays.
-    </li>
-    <li>
-      <strong className="font-medium text-gray-800">Property Management:</strong> Comprehensive solutions for managing your property, from tenant screening to rent collection.
-    </li>
-    <li>
-      <strong className="font-medium text-gray-800">Maintenance and Repairs:</strong> Reliable services to keep your property in top condition with prompt and professional care.
-    </li>
-    <li>
-      <strong className="font-medium text-gray-800">Furnishing and Staging:</strong> Transform unfurnished properties into appealing and functional spaces ready for tenants or buyers.
-    </li>
-  </ul>
-</div>
+          <h2 className="text-3xl font-semibold mb-6 text-gray-800">Our Core Services</h2>
+          <ul className="text-lg text-gray-600 max-w-3xl mx-auto list-inside pl-6 space-y-4 text-left">
+            <li>
+              <strong className="font-medium text-gray-800">Serviced Apartments:</strong> Fully-furnished apartments offering a perfect blend of comfort and convenience for short or long stays.
+            </li>
+            <li>
+              <strong className="font-medium text-gray-800">Property Management:</strong> Comprehensive solutions for managing your property, from tenant screening to rent collection.
+            </li>
+            <li>
+              <strong className="font-medium text-gray-800">Maintenance and Repairs:</strong> Reliable services to keep your property in top condition with prompt and professional care.
+            </li>
+            <li>
+              <strong className="font-medium text-gray-800">Furnishing and Staging:</strong> Transform unfurnished properties into appealing and functional spaces ready for tenants or buyers.
+            </li>
+          </ul>
+        </div>
 
 
 

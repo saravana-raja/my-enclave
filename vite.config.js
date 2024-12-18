@@ -6,4 +6,8 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  build: {
+    outDir: 'dist', // Ensure that the build output is placed in the correct directory
+    sourcemap: true, // Optional: Generate sourcemaps for debugging production build
+  },
 });

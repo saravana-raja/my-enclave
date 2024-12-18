@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from React Router
-import { Building2, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { MobileMenu } from './MobileMenu';
-
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -12,10 +11,15 @@ export const Header = () => {
     <header className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center gap-2">
-            <Building2 className="h-8 w-8 text-[#72ac4f]" />
+          <div className="flex items-center gap-1">
+
+            <img
+              src="../assets/svgviewer.svg" // Adjust the path to your logo file
+              alt="MyEnclave Logo"
+              className="h-16 w-16 text-[#72ac4f]"
+            />
             <Link to="/" className="text-xl font-bold text-gray-900 hover:text-[#72ac4f]">
-              myEnclave
+              MyEnclave
             </Link>
           </div>
 
@@ -26,17 +30,13 @@ export const Header = () => {
               <Link to="/about" className="text-gray-700 hover:text-[#72ac4f]">About</Link>
               <Link to="/contact" className="text-gray-700 hover:text-[#72ac4f]">Contact</Link>
               <Link to="/" className="text-gray-700 hover:text-[#72ac4f]">Home</Link>
-
             </nav>
 
-           {/* <div className="flex items-center gap-4">
+            {/* Uncomment if you want sign-in buttons */}
+            {/* <div className="flex items-center gap-4">
               <Button variant="outline" size="sm">
                 Sign In
               </Button>
-              {/*<Button variant="primary" size="sm">
-                List Property
-              </Button>
-
               <a 
                 href="https://docs.google.com/forms/d/e/1FAIpQLSdyzU6Q6GQHzx_5fszGKK7MRWMYRM0ZN0IpcAlJRuk9PV1Asw/viewform?usp=dialog"
                 target="_blank"
@@ -45,14 +45,11 @@ export const Header = () => {
               >
                 List Your Property
               </a> 
+            </div> */}
 
-  
-           </div> 
-            */}
-           
           </div>
 
-          <button 
+          <button
             className="md:hidden"
             onClick={() => setIsMobileMenuOpen(true)}
           >
@@ -61,12 +58,10 @@ export const Header = () => {
         </div>
       </div>
 
-      <MobileMenu 
-        isOpen={isMobileMenuOpen} 
-        onClose={() => setIsMobileMenuOpen(false)} 
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
       />
     </header>
   );
 };
-
-

@@ -12,19 +12,16 @@ import { PropertyGrid } from './components/property/PropertyGrid';
 import { usePropertySearch } from './hooks/usePropertySearch';
 import WhatsAppButton from './components/ui/WhatsAppButton';
 import { sampleProperties } from './data/sampleProperties';
-import { Helmet } from 'react-helmet';
+import { HelmetProvider, Helmet } from 'react-helmet-async'; // Ensure react-helmet-async is imported
 import { Home, Building } from 'lucide-react';
 import Services from './pages/Services';
 
 function App() {
   const bannerImage = '/assets/banner1.png';
-
   const { filters, updateFilters, filteredProperties } = usePropertySearch(sampleProperties);
-
-  const navigate = useNavigate();  // Add useNavigate hook
+  const navigate = useNavigate(); // Add useNavigate hook
 
   const handleViewDetails = (id) => {
-    // Use navigate instead of window.location.href
     navigate(`/properties/${id}`);
   };
 
@@ -79,34 +76,58 @@ function App() {
   );
 }
 
-// SEO optimization using react-helmet
-function Head() {
+// Dynamic SEO optimization for PropertyDetailsPage
+function Head({ title, description, image }) {
   return (
     <Helmet>
-      <title>Property Management Services | Find Your Perfect Property</title>
+      <title>{title || 'Property Management & Serviced Apartment Solutions'}</title>
       <meta
         name="description"
-        content="Browse and find properties for rent or sale. Explore luxurious apartments, houses, and condos in prime locations."
+        content={description || 'Offering comprehensive property management services, including serviced apartments, maintenance, repairs, furnishing, and staging, for property owners and tenants in Chennai.'}
       />
       <meta
         name="keywords"
-        content="property, real estate, house, apartments for rent, apartments for sale, property management"
+        content="property management, serviced apartments, property repairs, maintenance, property furnishing, property staging, rent property, manage property, Chennai property, real estate services, property rental, serviced apartments in Chennai"
       />
       <meta name="robots" content="index, follow" />
-      <meta
-        property="og:title"
-        content="Property Management Services | Find Your Perfect Property"
-      />
-      <meta
-        property="og:description"
-        content="Browse and find properties for rent or sale. Explore luxurious apartments, houses, and condos in prime locations."
-      />
-      <meta property="og:image" content="https://www.example.com/image.jpg" />
-      <meta property="og:url" content="https://www.example.com" />
     </Helmet>
   );
 }
 
+
+// Open Graph Meta Tags for PropertyDetailsPage
+function OpenGraph({ title, description, image }) {
+  return (
+    <>
+      <meta property="og:title" content={title || 'Comprehensive Property Management & Serviced Apartment Solutions for Owners and Tenants in Chennai'} />
+      <meta
+        property="og:description"
+        content={description || 'Our professional services offer hassle-free property management, serviced apartments, maintenance, repairs, furnishing, and staging solutions for property owners and tenants in Chennai.'}
+      />
+      <meta property="og:image" content={image || 'https://www.myenclave.in/assets/bannermeta.png'} />
+      <meta property="og:url" content="https://www.myenclave.in" />
+    </>
+  );
+}
+
+
+// Twitter Meta Tags for PropertyDetailsPage
+function TwitterCard({ title, description, image }) {
+  return (
+    <>
+      <meta name="twitter:title" content={title || 'Property Management & Serviced Apartments with Maintenance, Furnishing & Repairs in Chennai'} />
+      <meta
+        name="twitter:description"
+        content={description || 'We provide comprehensive property management services, including serviced apartments, maintenance, repairs, furnishing, and staging to help property owners and tenants in Chennai.'}
+      />
+      <meta name="twitter:image" content={image || 'https://www.myenclave.in/assets/banner1.png'} />
+      <meta name="twitter:card" content="summary_large_image" />
+    </>
+  );
+}
+
+
+// Property Details Page (Dynamic SEO)
 function PropertyDetailsPage() {
   const { id } = useParams();
   const property = sampleProperties.find((p) => p.id === id);
@@ -119,22 +140,42 @@ function PropertyDetailsPage() {
     return <div>Property not found</div>;
   }
 
-  return <PropertyDetails property={property} onClose={handleClose} />;
+  return (
+    <>
+      <Head
+        title={`Property Details - ${property.name}`}
+        description={property.description}
+        image={property.imageUrl} // Dynamic image URL from the property object
+      />
+      <OpenGraph
+        title={`Property Details - ${property.name}`}
+        description={property.description}
+        image={property.imageUrl} // Dynamic image URL from the property object
+      />
+      <TwitterCard
+        title={`Property Details - ${property.name}`}
+        description={property.description}
+        image={property.imageUrl} // Dynamic image URL from the property object
+      />
+      <PropertyDetails property={property} onClose={handleClose} />
+    </>
+  );
 }
 
 function AppWithRouting() {
   return (
-    <Router>
-      <Head />
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/properties" element={<Properties />} />
-        <Route path="/properties/:id" element={<PropertyDetailsPage />} />
-        <Route path="/services" element={<Services />} />
-      </Routes>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/properties" element={<Properties />} />
+          <Route path="/properties/:id" element={<PropertyDetailsPage />} />
+          <Route path="/services" element={<Services />} />
+        </Routes>
+      </Router>
+    </HelmetProvider>
   );
 }
 
